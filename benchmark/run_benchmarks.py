@@ -185,6 +185,8 @@ def run_buildings_benchmark(
         "esy_osmshape": (esyosmshape_get_buildings, _download_pbf_file),
     }
     if function is not None:
+        if function not in functions:
+            return
         functions = {function: functions[function]}
     _run_benchmark("buildings", functions, tags_filter=None, region=region)
 
@@ -200,6 +202,8 @@ def run_highways_benchmark(
         "esy_osmshape": (esyosmshape_get_highways, _download_pbf_file),
     }
     if function is not None:
+        if function not in functions:
+            return
         functions = {function: functions[function]}
     _run_benchmark("highways", functions, tags_filter={"highway": True}, region=region)
 
@@ -225,6 +229,8 @@ def run_all_data_benchmark(
         "esy_osmshape": (esyosmshape_get_all_data, _download_pbf_file),
     }
     if function is not None:
+        if function not in functions:
+            return
         functions = {function: functions[function]}
     _run_benchmark("all data", functions, tags_filter=None, region=region)
 
