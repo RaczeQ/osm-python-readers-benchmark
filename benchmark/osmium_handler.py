@@ -4,7 +4,7 @@ PBF File Handler.
 This module contains a handler capable of parsing a PBF file into a GeoDataFrame.
 """
 
-from collections.abc import Sequence
+from collections.abc import Generator, Sequence
 from typing import TYPE_CHECKING, Any, Callable, Optional, Union
 
 import geopandas as gpd
@@ -75,9 +75,9 @@ class PbfFileHandler(osmium.SimpleHandler):  # type: ignore
         self.features_cache: dict[str, dict[str, Any]] = {}
         self.features_count: Optional[int] = None
 
-    def get_features_gdf(
+    def iterate_osm_features(
         self, file_paths: Sequence[Union[str, "os.PathLike[str]"]]
-    ) -> gpd.GeoDataFrame:
+    ) -> None:
         """
         Get features GeoDataFrame from a list of PBF files.
 
@@ -89,30 +89,11 @@ class PbfFileHandler(osmium.SimpleHandler):  # type: ignore
         Args:
             file_paths (Sequence[Union[str, os.PathLike[str]]]): List of paths to `*.osm.pbf`
                 files to be parsed.
-            region_id (str, optional): Region name to be set in progress bar.
-                Defaults to "OSM".
-
-        Returns:
-            gpd.GeoDataFrame: GeoDataFrame with OSM features.
         """
-        self._clear_cache()
 
         for path_no, path in enumerate(file_paths):
             self.path_no = path_no + 1
             self.apply_file(path)
-        if self.features_cache:
-            features_gdf = gpd.GeoDataFrame(
-                data=self.features_cache.values(), crs=WGS84_CRS
-            )
-        else:
-            features_gdf = gpd.GeoDataFrame(
-                index=gpd.pd.Index(name=FEATURES_INDEX, data=[]),
-                crs=WGS84_CRS,
-                geometry=[],
-            )
-
-        self._clear_cache()
-        return features_gdf
 
     def node(self, node: osmium.osm.Node) -> None:
         """
@@ -257,16 +238,17 @@ class PbfFileHandler(osmium.SimpleHandler):  # type: ignore
         over a `LineString`.
         """
         if geometry is not None and self._geometry_is_in_region(geometry):
-            if full_osm_id not in self.features_cache:
-                self.features_cache[full_osm_id] = {
-                    FEATURES_INDEX: full_osm_id,
-                    "geometry": geometry,
-                }
+            pass
+            # if full_osm_id not in self.features_cache:
+            #     self.features_cache[full_osm_id] = {
+            #         FEATURES_INDEX: full_osm_id,
+            #         "geometry": geometry,
+            #     }
 
-            if isinstance(geometry, (Polygon, MultiPolygon)):
-                self.features_cache[full_osm_id]["geometry"] = geometry
+            # if isinstance(geometry, (Polygon, MultiPolygon)):
+            #     self.features_cache[full_osm_id]["geometry"] = geometry
 
-            self.features_cache[full_osm_id].update(matching_tags)
+            # self.features_cache[full_osm_id].update(matching_tags)
 
     def _geometry_is_in_region(self, geometry: BaseGeometry) -> bool:
         """Check if OSM geometry intersects with provided region."""
