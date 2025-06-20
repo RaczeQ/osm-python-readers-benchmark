@@ -33,7 +33,7 @@ class PbfFileHandler(osmium.SimpleHandler):  # type: ignore
     a geometry to filter only intersecting objects.
 
     Handler inherits functions from the `SimpleHandler`, such as `apply_file` and `apply_buffer`
-    but it's discouraged to use them on your own, and instead use dedicated `get_features_gdf`
+    but it's discouraged to use them on your own, and instead use dedicated `iterate_osm_features`
     function.
 
     References:

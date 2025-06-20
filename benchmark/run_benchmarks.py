@@ -47,22 +47,30 @@ from benchmark.tasks.filtered_data.quackosm import quackosm_get_filtered_data
 
 OSMNX_CACHE_DIR = Path(__file__).parent.parent / "cache"
 
+
 @dataclass
 class OsmBenchmarkingExtract:
     extract: OpenStreetMapExtract
     number_of_repeats: int
     allow_osmnx: bool
+    possible_timeout_seconds: int
+
 
 def get_osm_extracts_for_benchmarks() -> list[OsmBenchmarkingExtract]:
     return [
-        OsmBenchmarkingExtract(extract=get_extract_by_query(query), number_of_repeats=repeats, allow_osmnx=allow_osmnx)
-        for query, repeats, allow_osmnx in (
-            ("osmfr_europe_monaco", 1, True),
-            ("geofabrik_north-america_us_us_district-of-columbia", 1, True),
-            ("osmfr_europe_france_ile_de_france_paris", 1, True),
-            ("osmfr_europe_united_kingdom_england_greater_london", 1, True),
-            ("geofabrik_europe_portugal", 1, True),
-            ("geofabrik_europe_poland", 1, False),
+        OsmBenchmarkingExtract(
+            extract=get_extract_by_query(query),
+            number_of_repeats=repeats,
+            allow_osmnx=allow_osmnx,
+            possible_timeout_seconds=possible_timeout_seconds,
+        )
+        for query, repeats, allow_osmnx, possible_timeout_seconds in (
+            ("osmfr_europe_monaco", 10, True, 60),
+            ("geofabrik_north-america_us_us_district-of-columbia", 5, True, 60 * 5),
+            ("osmfr_europe_france_ile_de_france_paris", 5, True, 60 * 10),
+            ("osmfr_europe_united_kingdom_england_greater_london", 3, True, 60 * 20),
+            ("geofabrik_europe_portugal", 1, True, 60 * 30),
+            ("geofabrik_europe_poland", 1, False, 60 * 60),
         )
     ]
 
@@ -71,11 +79,7 @@ def _download_pbf_file(url: str, directory: Path, file_name: str, **kwargs: Any)
     """Download pbf file and return total size."""
     pbf_file_path = Path(
         retrieve(
-            url=url,
-            known_hash=None,
-            fname=file_name,
-            path=directory,
-            progressbar=True
+            url=url, known_hash=None, fname=file_name, path=directory, progressbar=True
         )
     )
 
@@ -86,12 +90,12 @@ def _run_benchmark(
     benchmark_name: str,
     functions: dict[str, tuple[Callable, Callable[..., int]]],
     tags_filter: Optional[dict[str, Any]] = None,
-) -> pd.DataFrame:
-    results = []
+) -> None:
     for osm_benchmark_config in get_osm_extracts_for_benchmarks():
         osm_extract = osm_benchmark_config.extract
         repeats = osm_benchmark_config.number_of_repeats
         allow_osmnx = osm_benchmark_config.allow_osmnx
+        possible_timeout_seconds = osm_benchmark_config.possible_timeout_seconds
         directory = Path(__file__).parent.parent / "files"
         file_name = f"{osm_extract.file_name}.osm.pbf"
         pbf_file_path = directory / file_name
@@ -102,24 +106,43 @@ def _run_benchmark(
         for function_name, (parsing_function, download_function) in functions.items():
             if function_name == "osmnx" and not allow_osmnx:
                 continue
-            for idx in trange(repeats, desc=f"[{benchmark_name}] [{osm_extract.name}] {function_name}"):
+
+            result_path = Path(
+                "results"
+            ) / f"{benchmark_name}_{osm_extract.file_name}_{function_name}.csv".replace(
+                " ", "_"
+            )
+
+            if result_path.exists():
+                print(
+                    f"Results for {benchmark_name} - {osm_extract.name} - {function_name} already exist. Skipping."
+                )
+                continue
+
+            results = []
+
+            for idx in trange(
+                repeats, desc=f"[{benchmark_name}] [{osm_extract.name}] {function_name}"
+            ):
                 download_size = download_function(
                     url=osm_extract.url,
-                    directory=directory if function_name != "osmnx" else osmnx_cache_dir,
+                    directory=(
+                        directory if function_name != "osmnx" else osmnx_cache_dir
+                    ),
                     file_name=file_name,
                     geometry=geometry,
                     tags_filter=tags_filter,
                 )
                 tags_filter = tags_filter or get_all_tags_filter(pbf_file_path)
-                # run_time = monitor_function(
-                #     partial(
-                #         parsing_function,
-                #         pbf_file=pbf_file_path,
-                #         geometry=geometry,
-                #         tags_filter=tags_filter,
-                #     )
-                # )
-                run_time = 0
+                monitoring_result = monitor_function(
+                    partial(
+                        parsing_function,
+                        pbf_file=pbf_file_path,
+                        geometry=geometry,
+                        tags_filter=tags_filter,
+                    ),
+                    possible_timeout_seconds=possible_timeout_seconds,
+                )
 
                 results.append(
                     {
@@ -128,64 +151,64 @@ def _run_benchmark(
                         "function": function_name,
                         "idx": idx + 1,
                         "download_size_bytes": download_size,
-                        "elapsed_time_seconds": run_time,
+                        **asdict(monitoring_result),
                     }
                 )
 
-    _df = pd.DataFrame(results)
+                if monitoring_result.timeout or monitoring_result.exception_name:
+                    break
 
-    return _df
+            result_path.parent.mkdir(parents=True, exist_ok=True)
+            _df = pd.DataFrame(results)
+            _df.to_csv(
+                result_path,
+                index=False,
+            )
+            print("Saved results to", result_path)
 
 
-def run_buildings_benchmark() -> pd.DataFrame:
+def run_buildings_benchmark() -> None:
     functions = {
-        "esy_osmshape": (esyosmshape_get_buildings, _download_pbf_file),
-        "osmnx": (osmnx_get_buildings, osmnx_download_buildings),
-        "osmium": (osmium_get_buildings, _download_pbf_file),
-        "pyrosm": (pyrosm_get_buildings, _download_pbf_file),
         "quackosm": (quackosm_get_buildings, _download_pbf_file),
+        "pyrosm": (pyrosm_get_buildings, _download_pbf_file),
+        "osmium": (osmium_get_buildings, _download_pbf_file),
+        "osmnx": (osmnx_get_buildings, osmnx_download_buildings),
+        "esy_osmshape": (esyosmshape_get_buildings, _download_pbf_file),
     }
-    return _run_benchmark("buildings", functions, tags_filter=None)
+    _run_benchmark("buildings", functions, tags_filter=None)
 
-def run_highways_benchmark() -> pd.DataFrame:
+
+def run_highways_benchmark() -> None:
     functions = {
-        "esy_osmshape": (esyosmshape_get_highways, _download_pbf_file),
-        "osmnx": (osmnx_get_highways, osmnx_download_highways),
-        "osmium": (osmium_get_highways, _download_pbf_file),
-        "pyrosm": (pyrosm_get_highways, _download_pbf_file),
         "quackosm": (quackosm_get_highways, _download_pbf_file),
+        "pyrosm": (pyrosm_get_highways, _download_pbf_file),
+        "osmium": (osmium_get_highways, _download_pbf_file),
+        "osmnx": (osmnx_get_highways, osmnx_download_highways),
+        "esy_osmshape": (esyosmshape_get_highways, _download_pbf_file),
     }
-    return _run_benchmark("highways", functions, tags_filter={"highway": True})
+    _run_benchmark("highways", functions, tags_filter={"highway": True})
 
-def run_geofabrik_layers_benchmark() -> pd.DataFrame:
+
+# def run_geofabrik_layers_benchmark() -> pd.DataFrame:
+#     functions = {
+#         "esy_osmshape": (esyosmshape_get_filtered_data, _download_pbf_file),
+#         "osmium": (osmium_get_filtered_data, _download_pbf_file),
+#         "pyrosm": (pyrosm_get_filtered_data, _download_pbf_file),
+#         "quackosm": (quackosm_get_filtered_data, _download_pbf_file),
+#     }
+#     return _run_benchmark("geofabrik layers", functions, tags_filter=GEOFABRIK_FILTER)
+
+
+def run_all_data_benchmark() -> None:
     functions = {
-        "esy_osmshape": (esyosmshape_get_filtered_data, _download_pbf_file),
-        # "osmnx": (osmnx_get_filtered_data, osmnx_download_filtered_data),
-        "osmium": (osmium_get_filtered_data, _download_pbf_file),
-        "pyrosm": (pyrosm_get_filtered_data, _download_pbf_file),
-        "quackosm": (quackosm_get_filtered_data, _download_pbf_file),
-    }
-    return _run_benchmark("geofabrik layers", functions, tags_filter=GEOFABRIK_FILTER)
-
-
-def run_all_data_benchmark() -> pd.DataFrame:
-    functions = {
-        "esy_osmshape": (esyosmshape_get_all_data, _download_pbf_file),
-        # "osmnx": (osmnx_get_all_data, _download_pbf_file),
+        "quackosm": (quackosm_get_all_data, _download_pbf_file),
+        "pyrosm": (pyrosm_get_all_data, _download_pbf_file),
         "osmium": (osmium_get_all_data, _download_pbf_file),
         "pydriosm": (pydriosm_get_all_data, _download_pbf_file),
-        "pyrosm": (pyrosm_get_all_data, _download_pbf_file),
-        "quackosm": (quackosm_get_all_data, _download_pbf_file),
+        "esy_osmshape": (esyosmshape_get_all_data, _download_pbf_file),
     }
-    return _run_benchmark("all data", functions, tags_filter=None)
+    _run_benchmark("all data", functions, tags_filter=None)
 
 
 if __name__ == "__main__":
-    # m = get_extract_by_query('osmfr_europe_monaco')
-    # # idx = _get_combined_index()
-    # print(m)
-    results = run_buildings_benchmark()
-    results.to_csv("buildings_benchmark.csv")
-    # results = run_all_data_benchmark()
-    # results.to_csv("all_data_benchmark.csv")
-    print(results)
+    run_buildings_benchmark()
