@@ -90,9 +90,16 @@ def _run_benchmark(
     benchmark_name: str,
     functions: dict[str, tuple[Callable, Callable[..., int]]],
     tags_filter: Optional[dict[str, Any]] = None,
+    region: Optional[str] = None
 ) -> None:
     for osm_benchmark_config in get_osm_extracts_for_benchmarks():
         osm_extract = osm_benchmark_config.extract
+        if region is not None and osm_extract.name != region:
+            print(
+                f"Skipping {osm_extract.name} for benchmark {benchmark_name} as it does not match the specified region {region}."
+            )
+            continue
+
         repeats = osm_benchmark_config.number_of_repeats
         allow_osmnx = osm_benchmark_config.allow_osmnx
         possible_timeout_seconds = osm_benchmark_config.possible_timeout_seconds
@@ -109,7 +116,7 @@ def _run_benchmark(
 
             result_path = Path(
                 "results"
-            ) / f"{benchmark_name}_{osm_extract.file_name}_{function_name}.csv".replace(
+            ) / f"{benchmark_name}_{osm_extract.name}_{function_name}.csv".replace(
                 " ", "_"
             )
 
@@ -167,7 +174,9 @@ def _run_benchmark(
             print("Saved results to", result_path)
 
 
-def run_buildings_benchmark() -> None:
+def run_buildings_benchmark(
+    region: Optional[str] = None, function: Optional[str] = None
+) -> None:
     functions = {
         "quackosm": (quackosm_get_buildings, _download_pbf_file),
         "pyrosm": (pyrosm_get_buildings, _download_pbf_file),
@@ -175,10 +184,14 @@ def run_buildings_benchmark() -> None:
         "osmnx": (osmnx_get_buildings, osmnx_download_buildings),
         "esy_osmshape": (esyosmshape_get_buildings, _download_pbf_file),
     }
-    _run_benchmark("buildings", functions, tags_filter=None)
+    if function is not None:
+        functions = {function: functions[function]}
+    _run_benchmark("buildings", functions, tags_filter=None, region=region)
 
 
-def run_highways_benchmark() -> None:
+def run_highways_benchmark(
+    region: Optional[str] = None, function: Optional[str] = None
+) -> None:
     functions = {
         "quackosm": (quackosm_get_highways, _download_pbf_file),
         "pyrosm": (pyrosm_get_highways, _download_pbf_file),
@@ -186,7 +199,9 @@ def run_highways_benchmark() -> None:
         "osmnx": (osmnx_get_highways, osmnx_download_highways),
         "esy_osmshape": (esyosmshape_get_highways, _download_pbf_file),
     }
-    _run_benchmark("highways", functions, tags_filter={"highway": True})
+    if function is not None:
+        functions = {function: functions[function]}
+    _run_benchmark("highways", functions, tags_filter={"highway": True}, region=region)
 
 
 # def run_geofabrik_layers_benchmark() -> pd.DataFrame:
@@ -199,7 +214,9 @@ def run_highways_benchmark() -> None:
 #     return _run_benchmark("geofabrik layers", functions, tags_filter=GEOFABRIK_FILTER)
 
 
-def run_all_data_benchmark() -> None:
+def run_all_data_benchmark(
+    region: Optional[str] = None, function: Optional[str] = None
+) -> None:
     functions = {
         "quackosm": (quackosm_get_all_data, _download_pbf_file),
         "pyrosm": (pyrosm_get_all_data, _download_pbf_file),
@@ -207,7 +224,9 @@ def run_all_data_benchmark() -> None:
         "pydriosm": (pydriosm_get_all_data, _download_pbf_file),
         "esy_osmshape": (esyosmshape_get_all_data, _download_pbf_file),
     }
-    _run_benchmark("all data", functions, tags_filter=None)
+    if function is not None:
+        functions = {function: functions[function]}
+    _run_benchmark("all data", functions, tags_filter=None, region=region)
 
 
 if __name__ == "__main__":

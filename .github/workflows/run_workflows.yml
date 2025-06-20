@@ -1,0 +1,38 @@
+name: run_benchmarks
+
+on:
+  workflow_dispatch:
+
+jobs:
+  run_benchmarks:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        benchmark: ["buildings", "highways", "all_data"]
+        region: ["monaco", "us_district-of-columbia", "paris", "greater_london", "portugal", "poland"]
+        function: ["quackosm", "pyrosm", "osmium", "osmnx", "esy_osmshape", "pydriosm"]
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: |
+          sudo apt install gdal-bin libgdal-dev
+          pip install uv
+          uv sync --locked
+
+      - name: Run benchmarks
+        run: |
+          uv run main.py --benchmark ${{ matrix.benchmark }} --region ${{ matrix.region }} --function ${{ matrix.function }}
+
+      - uses: actions/upload-artifact@v4
+        with:
+            name: ${{ matrix.benchmark }}_${{ matrix.region }}_${{ matrix.function }}
+            path: results/
