@@ -193,6 +193,9 @@ cython_debug/
 .cursorignore
 .cursorindexingignore
 
-cache/
+cache/*
+!cache/bbbike_index.geojson
+!cache/geofabrik_index.geojson
+!cache/osmfr_index.geojson
 files/
 results/
