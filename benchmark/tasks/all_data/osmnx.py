@@ -15,7 +15,7 @@ def osmnx_download_all_data(
 ) -> int:
     """Download cache and return total size."""
     osmnx.settings.cache_folder = directory
-    _download_overpass_features(geometry, tags_filter)
+    list(_download_overpass_features(geometry, tags_filter))
 
     return sum(p.stat().st_size for p in osmnx.settings.cache_folder.glob("**/*"))
 
