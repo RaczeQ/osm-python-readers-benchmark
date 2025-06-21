@@ -65,12 +65,12 @@ def get_osm_extracts_for_benchmarks() -> list[OsmBenchmarkingExtract]:
             possible_timeout_seconds=possible_timeout_seconds,
         )
         for query, repeats, allow_osmnx, possible_timeout_seconds in (
-            ("osmfr_europe_monaco", 10, True, 60),
-            ("geofabrik_north-america_us_us_district-of-columbia", 5, True, 60 * 5),
-            ("osmfr_europe_france_ile_de_france_paris", 5, True, 60 * 10),
-            ("osmfr_europe_united_kingdom_england_greater_london", 3, True, 60 * 20),
-            ("geofabrik_europe_portugal", 1, True, 60 * 30),
-            ("geofabrik_europe_poland", 1, False, 60 * 60),
+            ("osmfr_europe_monaco", 20, True, 60),
+            ("geofabrik_north-america_us_us_district-of-columbia", 10, True, 60 * 5),
+            ("osmfr_europe_france_ile_de_france_paris", 10, True, 60 * 10),
+            ("osmfr_europe_united_kingdom_england_greater_london", 10, True, 60 * 20),
+            ("geofabrik_europe_portugal", 5, True, 60 * 30),
+            ("geofabrik_europe_poland", 5, False, 60 * 60),
         )
     ]
 
