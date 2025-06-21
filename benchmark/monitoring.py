@@ -78,6 +78,7 @@ def monitor_function(function: Callable, possible_timeout_seconds: int) -> Monit
     while p.is_alive():
         if (time.time() - start_time) > possible_timeout_seconds:
             print(f"Monitoring timed out after {possible_timeout_seconds} seconds.")
+            p.terminate()
             return MonitoringResult(timeout=True)
 
         number_of_readings += 1
