@@ -188,7 +188,7 @@ def run_buildings_benchmark(
         if function not in functions:
             return
         functions = {function: functions[function]}
-    _run_benchmark("buildings", functions, tags_filter=None, region=region)
+    _run_benchmark("buildings", functions, tags_filter={"building": True}, region=region)
 
 
 def run_highways_benchmark(
