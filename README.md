@@ -52,3 +52,37 @@ uv sync --locked
 ```bash
 uv run main.py
 ```
+
+## Results
+
+### Download size difference
+
+![Download size difference benchmark results](data_download_difference.png)
+
+`OSMnx` downloads much bigger files to cache with only one type of features (buildings or highways) vs compressed PBF file with all the data available.
+
+### Read all data
+
+![All data benchmark results](benchmarking_all_data.png)
+
+QuackOSM is the only library that was able to read data for the country of Poland in a timely manner (below 60 minutes). It's not the fastest option for very small regions.
+
+Few libraries had issues with running out of memory because they can't stream data and one had trouble reading wrong geometries (`PyDriosm` with Grater London).
+
+Excluded `OSMnx` because Overpass JSON responses are much bigger than PBF file.
+
+### Read only buildings
+
+![Buildings benchmark results](benchmarking_buildings.png)
+
+Only `QuackOSM` and custom `PyOsmium`-based reader were able to read data for the country of Portugal and Poland before triggering a timeout (30 and 60 minutes).
+
+Excluded `PyDriosm` because it can't filter data from PBF file.
+
+### Read only highways
+
+![Highways benchmark results](benchmarking_highways.png)
+
+Again, only `QuackOSM` and custom `PyOsmium`-based reader were able to read data for the country of Portugal and Poland before triggering a timeout (30 and 60 minutes).
+
+Excluded `PyDriosm` because it can't filter data from PBF file.
