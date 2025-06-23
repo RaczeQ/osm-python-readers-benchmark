@@ -11,7 +11,7 @@ List of tested libraries (alphabetical order):
 - [PyDriosm](https://github.com/mikeqfu/pydriosm) (48 ⭐) - Wrapper around GDAL that can read data from OpenStreetMap data from PBF and SHP files in layers. Can download files from Geofabrik and BBBike by name. Loads all data into `GeoDataFrame`, cannot stream features for big files and cannot filter data based on tags.
 - [PyOsmium](https://github.com/osmcode/pyosmium) (569 ⭐) - Low-level reader written in C++ with bindings in Python. Exposes handlers for different types of objects read from PBF file and enables parsing of geometries to WKB format. Streaming features and filtering is left for user to implement.
 - [Pyrosm](https://github.com/pyrosm/pyrosm) (384 ⭐) - Library written in Cython with `pyrobuf` library for fast data reading from PBF files. Can download PBF files from BBBike and Geofabrik with a static Python API for a given query. Requires dict-based tags filters, loads all data into `GeoDataFrame`, cannot stream features for big files.
-- [QuackOSM](https://github.com/kraina-ai/quackosm) (276 ⭐) - Library based on `DuckDB` engine with `spatial` extension that can read big PBF files without memory limitations. Can automatically download matching OSM extracts from BBBike, Geofabrik and OpenStreetMap.fr for a given geometry and saves parsed data as GeoParquet. Can filter data with dict-based tag filter with additional features like negative filters and wildcard filters. Don't have to stream features, since it is designed to work with big PBF files.
+- [QuackOSM](https://github.com/kraina-ai/quackosm) (276 ⭐) - Library based on `DuckDB` engine with `spatial` extension that can read big PBF files without memory limitations. Can automatically download matching OSM extracts from BBBike, Geofabrik and OpenStreetMap.fr for a given geometry and saves parsed data as GeoParquet. Can filter data with dict-based tag filter with additional features like negative filters and wildcard filters. Doesn't have to stream features, since it is designed to work with big PBF files.
 
 ## Benchmark tasks
 
@@ -32,7 +32,7 @@ Tasks are run in another process with monitoring and exception detection (like m
 
 ## Collected data
 
-- Download size - total size of file(s) downloaded to cache: for all PBF based methods it's size of source file, for `OSMnx` it's total size of downloaded JSON Overpass responses.
+- Download size - total size of file(s) downloaded to cache: for all PBF based methods it's size of source file, for `OSMnx` it's total size of downloaded JSON Overpass responses as files on disk.
 - Processing time - total time spent on reading the data. Only processing time is counted, cache is prepared beforehand.
 - Max and average memory and CPU usage - to check how libraries are utilising the resources.
 
@@ -40,7 +40,7 @@ Tasks are run in another process with monitoring and exception detection (like m
 
 Install GDAL (here for Ubuntu):
 ```bash
-sudo apt install gdal-bin libgdal-dev
+sudo apt install libgdal-dev
 ```
 
 Install dependencies:
