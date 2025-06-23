@@ -55,6 +55,9 @@ uv run main.py
 
 ## Results
 
+Benchmark was ran on a [Github Action Ubuntu 24.04 runner](https://docs.github.com/en/actions/using-github-hosted-runners/using-github-hosted-runners/about-github-hosted-runners#standard-github-hosted-runners-for-public-repositories) (4 CPUs, 16 GB memory,	14 GB SSD)
+
+
 ### Download size difference
 
 ![Download size difference benchmark results](data_download_difference.png)
