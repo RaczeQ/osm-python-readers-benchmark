@@ -1,6 +1,6 @@
 # OpenStreetMap Python readers benchmark
 
-Last update: `2025-06-20`
+Last update: `2025-06-23`
 
 A benchmark for comparing performance of multiple Python libraries for downloading data from OpenStreetMap.
 
