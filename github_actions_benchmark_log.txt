@@ -1,0 +1,387 @@
+X main run_benchmarks · 15794061896
+Triggered via workflow_dispatch about 11 days ago
+
+JOBS
+✓ run_benchmarks (buildings, monaco, quackosm) in 9m11s (ID 44523827617)
+✓ run_benchmarks (buildings, monaco, osmnx) in 5m13s (ID 44523827618)
+✓ run_benchmarks (buildings, monaco, osmium) in 6m12s (ID 44523827619)
+✓ run_benchmarks (buildings, monaco, pyrosm) in 4m59s (ID 44523827620)
+✓ run_benchmarks (buildings, us_district-of-columbia, esy_osmshape) in 11m54s (ID 44523827622)
+✓ run_benchmarks (buildings, us_district-of-columbia, quackosm) in 8m12s (ID 44523827624)
+✓ run_benchmarks (buildings, monaco, pydriosm) in 4m14s (ID 44523827625)
+✓ run_benchmarks (buildings, us_district-of-columbia, osmium) in 8m31s (ID 44523827627)
+✓ run_benchmarks (buildings, us_district-of-columbia, pyrosm) in 7m29s (ID 44523827628)
+✓ run_benchmarks (buildings, paris, pyrosm) in 10m10s (ID 44523827629)
+X run_benchmarks (buildings, poland, pyrosm) in 21m41s (ID 44523827630)
+  ✓ Set up job
+  ✓ Checkout repository
+  ✓ Set up Python
+  ✓ Install dependencies
+  X Run benchmarks
+  - Run actions/upload-artifact@v4
+  - Post Set up Python
+  - Post Checkout repository
+  ✓ Complete job
+✓ run_benchmarks (buildings, paris, esy_osmshape) in 14m20s (ID 44523827631)
+✓ run_benchmarks (buildings, us_district-of-columbia, osmnx) in 10m0s (ID 44523827632)
+✓ run_benchmarks (buildings, poland, osmnx) in 4m24s (ID 44523827633)
+✓ run_benchmarks (buildings, monaco, esy_osmshape) in 6m3s (ID 44523827634)
+✓ run_benchmarks (buildings, portugal, quackosm) in 11m45s (ID 44523827635)
+✓ run_benchmarks (buildings, us_district-of-columbia, pydriosm) in 4m25s (ID 44523827636)
+✓ run_benchmarks (buildings, paris, osmnx) in 11m53s (ID 44523827638)
+✓ run_benchmarks (buildings, greater_london, pyrosm) in 24m19s (ID 44523827639)
+✓ run_benchmarks (highways, monaco, pyrosm) in 6m7s (ID 44523827640)
+✓ run_benchmarks (highways, monaco, osmium) in 5m3s (ID 44523827641)
+✓ run_benchmarks (highways, paris, esy_osmshape) in 11m19s (ID 44523827642)
+✓ run_benchmarks (highways, monaco, pydriosm) in 5m13s (ID 44523827643)
+✓ run_benchmarks (highways, paris, osmium) in 7m28s (ID 44523827644)
+✓ run_benchmarks (highways, us_district-of-columbia, osmnx) in 8m0s (ID 44523827645)
+✓ run_benchmarks (buildings, greater_london, quackosm) in 12m5s (ID 44523827646)
+✓ run_benchmarks (buildings, portugal, esy_osmshape) in 34m45s (ID 44523827647)
+✓ run_benchmarks (highways, monaco, osmnx) in 5m5s (ID 44523827648)
+✓ run_benchmarks (highways, monaco, quackosm) in 8m58s (ID 44523827649)
+✓ run_benchmarks (highways, us_district-of-columbia, quackosm) in 7m31s (ID 44523827650)
+✓ run_benchmarks (buildings, paris, osmium) in 8m36s (ID 44523827651)
+✓ run_benchmarks (buildings, greater_london, osmium) in 20m13s (ID 44523827652)
+✓ run_benchmarks (buildings, greater_london, esy_osmshape) in 1h40m6s (ID 44523827653)
+✓ run_benchmarks (highways, us_district-of-columbia, esy_osmshape) in 7m50s (ID 44523827654)
+✓ run_benchmarks (buildings, portugal, pydriosm) in 4m28s (ID 44523827655)
+✓ run_benchmarks (highways, greater_london, quackosm) in 10m44s (ID 44523827656)
+✓ run_benchmarks (highways, paris, pyrosm) in 9m50s (ID 44523827657)
+✓ run_benchmarks (highways, paris, osmnx) in 10m41s (ID 44523827658)
+✓ run_benchmarks (highways, us_district-of-columbia, pydriosm) in 4m37s (ID 44523827659)
+✓ run_benchmarks (buildings, greater_london, pydriosm) in 5m24s (ID 44523827660)
+✓ run_benchmarks (buildings, paris, pydriosm) in 4m20s (ID 44523827661)
+✓ run_benchmarks (highways, monaco, esy_osmshape) in 5m23s (ID 44523827662)
+✓ run_benchmarks (highways, paris, pydriosm) in 5m18s (ID 44523827663)
+X run_benchmarks (buildings, greater_london, osmnx) in 8m11s (ID 44523827664)
+  ✓ Set up job
+  ✓ Checkout repository
+  ✓ Set up Python
+  ✓ Install dependencies
+  X Run benchmarks
+  - Run actions/upload-artifact@v4
+  - Post Set up Python
+  - Post Checkout repository
+  ✓ Complete job
+✓ run_benchmarks (buildings, poland, esy_osmshape) in 1h6m35s (ID 44523827665)
+✓ run_benchmarks (highways, paris, quackosm) in 8m14s (ID 44523827666)
+✓ run_benchmarks (buildings, poland, quackosm) in 1h2m4s (ID 44523827667)
+✓ run_benchmarks (buildings, paris, quackosm) in 7m54s (ID 44523827668)
+✓ run_benchmarks (buildings, portugal, osmium) in 30m42s (ID 44523827669)
+X run_benchmarks (buildings, portugal, pyrosm) in 8m2s (ID 44523827670)
+  ✓ Set up job
+  ✓ Checkout repository
+  ✓ Set up Python
+  ✓ Install dependencies
+  X Run benchmarks
+  - Run actions/upload-artifact@v4
+  - Post Set up Python
+  - Post Checkout repository
+  ✓ Complete job
+✓ run_benchmarks (buildings, portugal, osmnx) in 30m56s (ID 44523827671)
+✓ run_benchmarks (buildings, poland, osmium) in 2h30m25s (ID 44523827672)
+✓ run_benchmarks (highways, us_district-of-columbia, osmium) in 7m27s (ID 44523827673)
+✓ run_benchmarks (buildings, poland, pydriosm) in 4m14s (ID 44523827675)
+✓ run_benchmarks (highways, greater_london, esy_osmshape) in 52m38s (ID 44523827676)
+✓ run_benchmarks (highways, portugal, pydriosm) in 4m16s (ID 44523827677)
+X run_benchmarks (highways, portugal, osmnx) in 38m49s (ID 44523827678)
+  ✓ Set up job
+  ✓ Checkout repository
+  ✓ Set up Python
+  ✓ Install dependencies
+  X Run benchmarks
+  - Run actions/upload-artifact@v4
+  - Post Set up Python
+  - Post Checkout repository
+  ✓ Complete job
+✓ run_benchmarks (highways, greater_london, pydriosm) in 5m53s (ID 44523827679)
+✓ run_benchmarks (highways, portugal, esy_osmshape) in 35m18s (ID 44523827680)
+X run_benchmarks (highways, portugal, pyrosm) in 7m28s (ID 44523827681)
+  ✓ Set up job
+  ✓ Checkout repository
+  ✓ Set up Python
+  ✓ Install dependencies
+  X Run benchmarks
+  - Run actions/upload-artifact@v4
+  - Post Set up Python
+  - Post Checkout repository
+  ✓ Complete job
+X run_benchmarks (highways, poland, pyrosm) in 9m16s (ID 44523827682)
+  ✓ Set up job
+  ✓ Checkout repository
+  ✓ Set up Python
+  ✓ Install dependencies
+  X Run benchmarks
+  - Run actions/upload-artifact@v4
+  - Post Set up Python
+  - Post Checkout repository
+  ✓ Complete job
+✓ run_benchmarks (highways, portugal, quackosm) in 11m36s (ID 44523827683)
+✓ run_benchmarks (highways, portugal, osmium) in 27m37s (ID 44523827684)
+✓ run_benchmarks (highways, greater_london, osmium) in 15m53s (ID 44523827685)
+✓ run_benchmarks (highways, us_district-of-columbia, pyrosm) in 7m59s (ID 44523827686)
+✓ run_benchmarks (highways, greater_london, pyrosm) in 22m39s (ID 44523827688)
+✓ run_benchmarks (all_data, us_district-of-columbia, osmnx) in 5m9s (ID 44523827689)
+X run_benchmarks (highways, greater_london, osmnx) in 10m53s (ID 44523827690)
+  ✓ Set up job
+  ✓ Checkout repository
+  ✓ Set up Python
+  ✓ Install dependencies
+  X Run benchmarks
+  - Run actions/upload-artifact@v4
+  - Post Set up Python
+  - Post Checkout repository
+  ✓ Complete job
+✓ run_benchmarks (all_data, us_district-of-columbia, pyrosm) in 22m3s (ID 44523827691)
+✓ run_benchmarks (highways, poland, osmnx) in 4m27s (ID 44523827692)
+✓ run_benchmarks (all_data, us_district-of-columbia, osmium) in 12m45s (ID 44523827693)
+✓ run_benchmarks (highways, poland, pydriosm) in 5m17s (ID 44523827694)
+✓ run_benchmarks (highways, poland, esy_osmshape) in 1h7m9s (ID 44523827695)
+✓ run_benchmarks (all_data, greater_london, quackosm) in 15m1s (ID 44523827696)
+✓ run_benchmarks (highways, poland, osmium) in 1h52m55s (ID 44523827697)
+✓ run_benchmarks (all_data, paris, pyrosm) in 1h25m53s (ID 44523827698)
+✓ run_benchmarks (all_data, monaco, pyrosm) in 7m20s (ID 44523827699)
+✓ run_benchmarks (all_data, greater_london, osmium) in 53m29s (ID 44523827700)
+✓ run_benchmarks (all_data, monaco, quackosm) in 9m14s (ID 44523827701)
+✓ run_benchmarks (all_data, monaco, esy_osmshape) in 6m3s (ID 44523827702)
+✓ run_benchmarks (all_data, monaco, pydriosm) in 7m41s (ID 44523827704)
+X run_benchmarks (all_data, portugal, pyrosm) in 7m35s (ID 44523827705)
+  ✓ Set up job
+  ✓ Checkout repository
+  ✓ Set up Python
+  ✓ Install dependencies
+  X Run benchmarks
+  - Run actions/upload-artifact@v4
+  - Post Set up Python
+  - Post Checkout repository
+  ✓ Complete job
+✓ run_benchmarks (all_data, monaco, osmnx) in 5m24s (ID 44523827706)
+✓ run_benchmarks (highways, poland, quackosm) in 41m9s (ID 44523827707)
+✓ run_benchmarks (all_data, paris, esy_osmshape) in 27m39s (ID 44523827708)
+✓ run_benchmarks (all_data, paris, osmnx) in 4m26s (ID 44523827709)
+✓ run_benchmarks (all_data, us_district-of-columbia, quackosm) in 8m14s (ID 44523827710)
+✓ run_benchmarks (all_data, paris, pydriosm) in 49m48s (ID 44523827711)
+✓ run_benchmarks (all_data, greater_london, pydriosm) in 13m38s (ID 44523827712)
+✓ run_benchmarks (all_data, portugal, osmnx) in 5m12s (ID 44523827713)
+✓ run_benchmarks (all_data, monaco, osmium) in 6m16s (ID 44523827714)
+✓ run_benchmarks (all_data, paris, osmium) in 16m43s (ID 44523827716)
+✓ run_benchmarks (all_data, greater_london, osmnx) in 4m35s (ID 44523827717)
+✓ run_benchmarks (all_data, us_district-of-columbia, esy_osmshape) in 20m14s (ID 44523827718)
+✓ run_benchmarks (all_data, portugal, osmium) in 1h29m1s (ID 44523827719)
+X run_benchmarks (all_data, greater_london, pyrosm) in 16m55s (ID 44523827720)
+  ✓ Set up job
+  ✓ Checkout repository
+  ✓ Set up Python
+  ✓ Install dependencies
+  X Run benchmarks
+  - Run actions/upload-artifact@v4
+  - Post Set up Python
+  - Post Checkout repository
+  ✓ Complete job
+✓ run_benchmarks (all_data, us_district-of-columbia, pydriosm) in 44m8s (ID 44523827721)
+✓ run_benchmarks (all_data, paris, quackosm) in 9m50s (ID 44523827722)
+✓ run_benchmarks (all_data, poland, osmium) in 1h6m30s (ID 44523827723)
+✓ run_benchmarks (all_data, portugal, quackosm) in 20m22s (ID 44523827724)
+✓ run_benchmarks (all_data, portugal, esy_osmshape) in 35m28s (ID 44523827725)
+✓ run_benchmarks (all_data, poland, quackosm) in 1h33m39s (ID 44523827726)
+✓ run_benchmarks (all_data, portugal, pydriosm) in 2h0m4s (ID 44523827727)
+✓ run_benchmarks (all_data, poland, esy_osmshape) in 1h6m58s (ID 44523827729)
+✓ run_benchmarks (all_data, greater_london, esy_osmshape) in 3h24m33s (ID 44523827730)
+X run_benchmarks (all_data, poland, pydriosm) in 53m7s (ID 44523827732)
+  ✓ Set up job
+  ✓ Checkout repository
+  ✓ Set up Python
+  ✓ Install dependencies
+  X Run benchmarks
+  - Run actions/upload-artifact@v4
+  - Post Set up Python
+  - Post Checkout repository
+  ✓ Complete job
+✓ run_benchmarks (all_data, poland, osmnx) in 5m6s (ID 44523827735)
+X run_benchmarks (all_data, poland, pyrosm) in 15m43s (ID 44523827739)
+  ✓ Set up job
+  ✓ Checkout repository
+  ✓ Set up Python
+  ✓ Install dependencies
+  X Run benchmarks
+  - Run actions/upload-artifact@v4
+  - Post Set up Python
+  - Post Checkout repository
+  ✓ Complete job
+
+ANNOTATIONS
+! No files were found with the provided path: results/. No artifacts will be uploaded.
+run_benchmarks (buildings, monaco, pydriosm): .github#17
+
+X The operation was canceled.
+run_benchmarks (buildings, poland, pyrosm): .github#2067
+
+! No files were found with the provided path: results/. No artifacts will be uploaded.
+run_benchmarks (buildings, poland, osmnx): .github#17
+
+! No files were found with the provided path: results/. No artifacts will be uploaded.
+run_benchmarks (buildings, us_district-of-columbia, pydriosm): .github#17
+
+! No files were found with the provided path: results/. No artifacts will be uploaded.
+run_benchmarks (highways, monaco, pydriosm): .github#17
+
+! No files were found with the provided path: results/. No artifacts will be uploaded.
+run_benchmarks (buildings, portugal, pydriosm): .github#17
+
+! No files were found with the provided path: results/. No artifacts will be uploaded.
+run_benchmarks (highways, us_district-of-columbia, pydriosm): .github#17
+
+! No files were found with the provided path: results/. No artifacts will be uploaded.
+run_benchmarks (buildings, greater_london, pydriosm): .github#17
+
+! No files were found with the provided path: results/. No artifacts will be uploaded.
+run_benchmarks (buildings, paris, pydriosm): .github#17
+
+! No files were found with the provided path: results/. No artifacts will be uploaded.
+run_benchmarks (highways, paris, pydriosm): .github#17
+
+X The operation was canceled.
+run_benchmarks (buildings, greater_london, osmnx): .github#17
+
+X The operation was canceled.
+run_benchmarks (buildings, portugal, pyrosm): .github#410
+
+! No files were found with the provided path: results/. No artifacts will be uploaded.
+run_benchmarks (buildings, poland, pydriosm): .github#17
+
+! No files were found with the provided path: results/. No artifacts will be uploaded.
+run_benchmarks (highways, portugal, pydriosm): .github#17
+
+X The operation was canceled.
+run_benchmarks (highways, portugal, osmnx): .github#21
+
+! No files were found with the provided path: results/. No artifacts will be uploaded.
+run_benchmarks (highways, greater_london, pydriosm): .github#17
+
+X The operation was canceled.
+run_benchmarks (highways, portugal, pyrosm): .github#400
+
+X The operation was canceled.
+run_benchmarks (highways, poland, pyrosm): .github#2251
+
+! No files were found with the provided path: results/. No artifacts will be uploaded.
+run_benchmarks (all_data, us_district-of-columbia, osmnx): .github#17
+
+X The operation was canceled.
+run_benchmarks (highways, greater_london, osmnx): .github#17
+
+! No files were found with the provided path: results/. No artifacts will be uploaded.
+run_benchmarks (highways, poland, osmnx): .github#17
+
+! No files were found with the provided path: results/. No artifacts will be uploaded.
+run_benchmarks (highways, poland, pydriosm): .github#17
+
+X The operation was canceled.
+run_benchmarks (all_data, portugal, pyrosm): .github#368
+
+! No files were found with the provided path: results/. No artifacts will be uploaded.
+run_benchmarks (all_data, monaco, osmnx): .github#17
+
+! No files were found with the provided path: results/. No artifacts will be uploaded.
+run_benchmarks (all_data, paris, osmnx): .github#17
+
+! No files were found with the provided path: results/. No artifacts will be uploaded.
+run_benchmarks (all_data, portugal, osmnx): .github#17
+
+! No files were found with the provided path: results/. No artifacts will be uploaded.
+run_benchmarks (all_data, greater_london, osmnx): .github#17
+
+X The operation was canceled.
+run_benchmarks (all_data, greater_london, pyrosm): .github#93
+
+X The operation was canceled.
+run_benchmarks (all_data, poland, pydriosm): .github#2189
+
+! No files were found with the provided path: results/. No artifacts will be uploaded.
+run_benchmarks (all_data, poland, osmnx): .github#17
+
+X The operation was canceled.
+run_benchmarks (all_data, poland, pyrosm): .github#2005
+
+
+ARTIFACTS
+buildings_monaco_pyrosm
+highways_monaco_osmium
+buildings_monaco_osmnx
+highways_monaco_pyrosm
+buildings_monaco_osmium
+buildings_us_district-of-columbia_pyrosm
+buildings_us_district-of-columbia_quackosm
+buildings_paris_osmium
+buildings_monaco_quackosm
+buildings_paris_pyrosm
+highways_paris_esy_osmshape
+buildings_portugal_quackosm
+buildings_us_district-of-columbia_esy_osmshape
+buildings_paris_osmnx
+buildings_paris_esy_osmshape
+highways_monaco_osmnx
+buildings_us_district-of-columbia_osmnx
+highways_paris_osmium
+highways_monaco_quackosm
+highways_portugal_quackosm
+highways_us_district-of-columbia_quackosm
+highways_paris_pyrosm
+buildings_us_district-of-columbia_osmium
+buildings_greater_london_quackosm
+all_data_monaco_esy_osmshape
+highways_paris_osmnx
+buildings_paris_quackosm
+buildings_monaco_esy_osmshape
+highways_us_district-of-columbia_esy_osmshape
+all_data_paris_quackosm
+highways_paris_quackosm
+all_data_us_district-of-columbia_quackosm
+buildings_portugal_esy_osmshape
+highways_greater_london_pyrosm
+highways_monaco_esy_osmshape
+all_data_greater_london_quackosm
+all_data_us_district-of-columbia_pyrosm
+highways_portugal_osmium
+all_data_portugal_quackosm
+all_data_monaco_pydriosm
+highways_us_district-of-columbia_osmium
+highways_us_district-of-columbia_pyrosm
+all_data_monaco_osmium
+all_data_greater_london_pydriosm
+buildings_portugal_osmnx
+highways_us_district-of-columbia_osmnx
+all_data_paris_osmium
+highways_greater_london_osmium
+highways_greater_london_esy_osmshape
+buildings_poland_esy_osmshape
+all_data_us_district-of-columbia_esy_osmshape
+all_data_monaco_quackosm
+all_data_paris_esy_osmshape
+all_data_greater_london_osmium
+buildings_greater_london_osmium
+buildings_greater_london_pyrosm
+all_data_monaco_pyrosm
+highways_poland_esy_osmshape
+highways_greater_london_quackosm
+buildings_poland_quackosm
+all_data_us_district-of-columbia_osmium
+all_data_us_district-of-columbia_pydriosm
+all_data_poland_osmium
+buildings_greater_london_esy_osmshape
+all_data_paris_pydriosm
+all_data_portugal_esy_osmshape
+buildings_portugal_osmium
+all_data_portugal_osmium
+highways_portugal_esy_osmshape
+highways_poland_quackosm
+all_data_paris_pyrosm
+highways_poland_osmium
+all_data_poland_esy_osmshape
+all_data_poland_quackosm
+buildings_poland_osmium
+all_data_portugal_pydriosm
+all_data_greater_london_esy_osmshape
+
+To see what failed, try: gh run view 15794061896 --log-failed
